@@ -828,6 +828,91 @@ html, body, #root {
 /* Mobile Touch Scrollbar Improvements */
 * {
   -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   GENEL RESPONSIVE & MOBİL UYUMLULUK (@media max-width: 768px)
+   ========================================================= */
+@media (max-width: 768px) {
+  *, *::before, *::after {
+    box-sizing: border-box !important;
+  }
+
+  html, body {
+    width: 100% !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+  }
+
+  /* Grid & Flex esnek yapıları: mobilde taşmayı önle, tek sütuna düşür */
+  .habit-hero-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    gap: 16px !important;
+  }
+
+  /* Kedi Odası & Kartlar: %100 esnek genişlik, taşma engelleme */
+  .responsive-cat-room-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    border-radius: 16px !important;
+  }
+
+  .responsive-cat-viewport {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: clamp(230px, 34vh, 320px) !important;
+    overflow: hidden !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .responsive-cat-stage {
+    width: auto !important;
+    height: 100% !important;
+    aspect-ratio: 1 / 1 !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    transform: scale(0.85) !important;
+    margin: 0 auto !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Buton şeridinin dışarı taşmasını ve odayı yarım bırakmasını önleyen kural */
+  .cat-quick-anims-strip {
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 1 1 0% !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .cat-quick-anims-strip button {
+    flex-shrink: 0 !important;
+  }
+
+  /* Tüm görseller asla ekran genişliğini aşamaz */
+  img, svg, video, canvas {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Ana içerik kapsayıcıları */
+  main, .app-max-container {
+    width: 100% !important;
+    max-width: 100vw !important;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+    overflow-x: hidden !important;
+  }
 }
 
 

@@ -507,12 +507,15 @@ export const PixelCatRoom: React.FC<PixelCatRoomProps> = ({
             height: '100%',
             aspectRatio: '1 / 1',
             maxHeight: '100%',
+            maxWidth: '100%',
+            width: 'auto',
             transform: 'scale(0.86)',
             transformOrigin: 'center center',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             flexShrink: 0,
+            margin: '0 auto',
           }}
         >
           {/* A) ODA ARKA PLANI */}
@@ -1236,7 +1239,7 @@ export const PixelCatRoom: React.FC<PixelCatRoomProps> = ({
           gap: 5,
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'nowrap', gap: 6 }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'nowrap', gap: 6, minWidth: 0, width: '100%', maxWidth: '100%', overflow: 'hidden' }}>
           <div
             className="cat-quick-anims-strip"
             style={{
@@ -1248,7 +1251,9 @@ export const PixelCatRoom: React.FC<PixelCatRoomProps> = ({
               WebkitOverflowScrolling: 'touch',
               scrollbarWidth: 'none',
               msOverflowStyle: 'none',
-              flex: 1,
+              flex: '1 1 0%',
+              minWidth: 0,
+              width: '100%',
               paddingBottom: 2,
             }}
           >
