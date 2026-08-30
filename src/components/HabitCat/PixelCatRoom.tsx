@@ -491,8 +491,7 @@ export const PixelCatRoom: React.FC<PixelCatRoomProps> = ({
         style={{
           position: 'relative',
           width: '100%',
-          aspectRatio: '1 / 1',
-          maxHeight: 'min(40vh, 380px)',
+          height: 'clamp(220px, 33vh, 340px)',
           background: activeRoom === 'bathroom' ? '#1c2d38' : isNight ? '#425867' : '#adc9dc',
           overflow: 'hidden',
           display: 'flex',
@@ -500,19 +499,20 @@ export const PixelCatRoom: React.FC<PixelCatRoomProps> = ({
           justifyContent: 'center',
         }}
       >
-        {/* İzometrik Oda Sahnesi: Ekran boyutuna göre otomatik ölçeklenir, köşeler kesilmez */}
+        {/* İzometrik Oda Sahnesi: Her zaman tam 1:1 kare kalır, tüm oda ve eşyalar ekrana mükemmel sığar */}
         <div
           className="responsive-cat-stage"
           style={{
-            position: 'absolute',
-            inset: 0,
-            width: '100%',
+            position: 'relative',
             height: '100%',
-            transform: 'scale(0.85)',
+            aspectRatio: '1 / 1',
+            maxHeight: '100%',
+            transform: 'scale(0.86)',
             transformOrigin: 'center center',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            flexShrink: 0,
           }}
         >
           {/* A) ODA ARKA PLANI */}
@@ -1225,15 +1225,15 @@ export const PixelCatRoom: React.FC<PixelCatRoomProps> = ({
         )}
       </div>
 
-      {/* ── 4. ALT PANEL & HIZLI BUTONLAR ── */}
+      {/* ── 4. ALT PANEL & HIZLI BUTONLAR (KOMPAKT & RESPONSIVE) ── */}
       <div
         style={{
           background: '#131b24',
           borderTop: '1px solid #293847',
-          padding: '12px 14px',
+          padding: '6px 10px',
           display: 'flex',
           flexDirection: 'column',
-          gap: 10,
+          gap: 5,
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'nowrap', gap: 6 }}>
@@ -1242,7 +1242,7 @@ export const PixelCatRoom: React.FC<PixelCatRoomProps> = ({
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: 6,
+              gap: 5,
               overflowX: 'auto',
               flexWrap: 'nowrap',
               WebkitOverflowScrolling: 'touch',
@@ -1252,82 +1252,85 @@ export const PixelCatRoom: React.FC<PixelCatRoomProps> = ({
               paddingBottom: 2,
             }}
           >
-            <span style={{ fontSize: '0.72rem', fontWeight: 800, color: '#94a3b8', marginRight: 4, flexShrink: 0 }}>
-              Hızlı Animasyonlar:
+            <span style={{ fontSize: '0.68rem', fontWeight: 800, color: '#94a3b8', marginRight: 2, flexShrink: 0 }}>
+              Animasyonlar:
             </span>
 
-            {/* 🛁 BANYO ODASI BUTONU (Yeni odada direkt küvette belirtsin) */}
+            {/* 🛁 BANYO ODASI BUTONU */}
             <button
               onClick={() => triggerQuickAction('bathtub', 30000)}
               style={{
                 background: activeRoom === 'bathroom' ? 'rgba(56,189,248,0.35)' : 'rgba(56,189,248,0.15)',
                 border: '1px solid rgba(56,189,248,0.5)',
                 color: '#38bdf8',
-                padding: '5px 11px',
+                padding: '4px 9px',
                 borderRadius: 9999,
-                fontSize: '0.72rem',
+                fontSize: '0.68rem',
                 fontWeight: 800,
                 cursor: 'pointer',
+                flexShrink: 0,
               }}
-              title="Banyo Odası: Kedi direkt küvetin içinde köpük banyosu yapar"
+              title="Banyo Odası: Kedi küvette köpük banyosu yapar"
             >
               🛁 BATHTUB
             </button>
 
-            {/* 💉 SICK 1 (Animations - 5) */}
+            {/* 💉 SICK 1 */}
             <button
               onClick={() => triggerQuickAction('sick1', 30000)}
               style={{
                 background: actionOverride === 'sick1' ? 'rgba(239,68,68,0.3)' : 'rgba(239,68,68,0.15)',
                 border: '1px solid rgba(239,68,68,0.4)',
                 color: '#fca5a5',
-                padding: '5px 11px',
+                padding: '4px 9px',
                 borderRadius: 9999,
-                fontSize: '0.72rem',
+                fontSize: '0.68rem',
                 fontWeight: 800,
                 cursor: 'pointer',
+                flexShrink: 0,
               }}
               title="SICK 1: Serum bağlı kedi"
             >
               💉 SICK 1
             </button>
 
-            {/* 🌡️ SICK 2 (Animations - 5) */}
+            {/* 🌡️ SICK 2 */}
             <button
               onClick={() => triggerQuickAction('sick2', 30000)}
               style={{
                 background: actionOverride === 'sick2' ? 'rgba(245,158,11,0.3)' : 'rgba(245,158,11,0.15)',
                 border: '1px solid rgba(245,158,11,0.4)',
                 color: '#fcd34d',
-                padding: '5px 11px',
+                padding: '4px 9px',
                 borderRadius: 9999,
-                fontSize: '0.72rem',
+                fontSize: '0.68rem',
                 fontWeight: 800,
                 cursor: 'pointer',
+                flexShrink: 0,
               }}
               title="SICK 2: Dereceyle ateş ölçen kedi"
             >
               🌡️ SICK 2
             </button>
 
-            {/* 📦 BOX 1 (Animations - Box) */}
+            {/* 📦 BOX 1 */}
             <button
               onClick={() => triggerQuickAction('box1', 30000)}
               style={{
                 background: actionOverride === 'box1' ? 'rgba(168,85,247,0.3)' : 'rgba(168,85,247,0.15)',
                 border: '1px solid rgba(168,85,247,0.35)',
                 color: '#c084fc',
-                padding: '5px 11px',
+                padding: '4px 9px',
                 borderRadius: 9999,
-                fontSize: '0.72rem',
+                fontSize: '0.68rem',
                 fontWeight: 800,
                 cursor: 'pointer',
+                flexShrink: 0,
               }}
               title="BOX 1: Kutudan bakan kedi"
             >
               📦 BOX 1
             </button>
-
 
             {/* 😾 ANGRY */}
             <button
@@ -1336,11 +1339,12 @@ export const PixelCatRoom: React.FC<PixelCatRoomProps> = ({
                 background: actionOverride === 'angry' ? 'rgba(239,68,68,0.3)' : 'rgba(239,68,68,0.15)',
                 border: '1px solid rgba(239,68,68,0.4)',
                 color: '#f87171',
-                padding: '5px 11px',
+                padding: '4px 9px',
                 borderRadius: 9999,
-                fontSize: '0.72rem',
+                fontSize: '0.68rem',
                 fontWeight: 800,
                 cursor: 'pointer',
+                flexShrink: 0,
               }}
             >
               😾 ANGRY
@@ -1353,18 +1357,19 @@ export const PixelCatRoom: React.FC<PixelCatRoomProps> = ({
                 background: actionOverride === 'dance' ? 'rgba(236,72,153,0.3)' : 'rgba(236,72,153,0.15)',
                 border: '1px solid rgba(236,72,153,0.4)',
                 color: '#f472b6',
-                padding: '5px 11px',
+                padding: '4px 9px',
                 borderRadius: 9999,
-                fontSize: '0.72rem',
+                fontSize: '0.68rem',
                 fontWeight: 800,
                 cursor: 'pointer',
+                flexShrink: 0,
               }}
               title="DANCE: Happy dance"
             >
               🪩 DANCE
             </button>
 
-            {/* ➕ Ekstra Animasyonlar (5'er 5'er açılır) */}
+            {/* ➕ Ekstra Animasyonlar */}
             {EXTRA_ANIMATIONS.slice(0, extraAnimsCount).map(extra => (
               <button
                 key={extra.action}
@@ -1373,11 +1378,12 @@ export const PixelCatRoom: React.FC<PixelCatRoomProps> = ({
                   background: actionOverride === extra.action ? `rgba(${extra.bg},0.3)` : `rgba(${extra.bg},0.15)`,
                   border: `1px solid rgba(${extra.bg},0.4)`,
                   color: extra.color,
-                  padding: '5px 11px',
+                  padding: '4px 9px',
                   borderRadius: 9999,
-                  fontSize: '0.72rem',
+                  fontSize: '0.68rem',
                   fontWeight: 800,
                   cursor: 'pointer',
+                  flexShrink: 0,
                   transition: 'all 0.15s ease',
                 }}
                 title={extra.title}
@@ -1391,43 +1397,34 @@ export const PixelCatRoom: React.FC<PixelCatRoomProps> = ({
             onClick={() => {
               setExtraAnimsCount(prev => (prev >= EXTRA_ANIMATIONS.length ? 0 : Math.min(prev + 5, EXTRA_ANIMATIONS.length)));
             }}
-            aria-label={
-              extraAnimsCount >= EXTRA_ANIMATIONS.length
-                ? 'Collapse extra animations'
-                : `Show more animations (+5) [${extraAnimsCount}/${EXTRA_ANIMATIONS.length}]`
-            }
-            title={
-              extraAnimsCount >= EXTRA_ANIMATIONS.length
-                ? 'Collapse'
-                : `+5 Animations (${extraAnimsCount}/${EXTRA_ANIMATIONS.length})`
-            }
+            aria-label="Daha fazla animasyon"
+            title={extraAnimsCount >= EXTRA_ANIMATIONS.length ? 'Daralt' : '+5 Animasyon'}
             style={{
               background: extraAnimsCount > 0 ? '#334155' : '#1e293b',
               border: '1px solid #334155',
               color: '#fbbf24',
-              width: 32,
-              height: 32,
+              width: 28,
+              height: 28,
               padding: 0,
               borderRadius: 9999,
-              fontSize: '1.15rem',
+              fontSize: '1rem',
               fontWeight: 800,
               cursor: 'pointer',
               display: 'inline-flex',
               alignItems: 'center',
               justifyContent: 'center',
-              lineHeight: 1,
               flexShrink: 0,
               transition: 'all 0.2s ease',
             }}
           >
-            {extraAnimsCount >= EXTRA_ANIMATIONS.length ? '–' : <Plus size={16} strokeWidth={2.75} />}
+            {extraAnimsCount >= EXTRA_ANIMATIONS.length ? '–' : <Plus size={14} strokeWidth={2.75} />}
           </button>
         </div>
 
-        {/* Durum Bilgisi & 30s Geri Sayım */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: 2, flexWrap: 'wrap', gap: 6 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
-            <span style={{ fontSize: '0.72rem', color: '#94a3b8' }}>
+        {/* Durum Bilgisi & Geri Sayım */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: 1, flexWrap: 'nowrap', gap: 6, fontSize: '0.67rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexShrink: 0 }}>
+            <span style={{ color: '#94a3b8' }}>
               Active:{' '}
               <strong style={{ color: '#fbbf24' }}>
                 {activeRoom === 'bathroom'
@@ -1445,46 +1442,37 @@ export const PixelCatRoom: React.FC<PixelCatRoomProps> = ({
                   background: 'rgba(56,189,248,0.18)',
                   border: '1px solid rgba(56,189,248,0.4)',
                   color: '#38bdf8',
-                  padding: '2px 8px',
+                  padding: '1px 6px',
                   borderRadius: 9999,
-                  fontSize: '0.68rem',
                   fontWeight: 800,
                 }}
               >
-                ⏳ {remainingSecs}s kaldı
+                ⏳ {remainingSecs}s
               </span>
             )}
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-            {(isUserAction || activeRoom === 'bathroom') && (
-              <button
-                onClick={() => {
-                  setActiveRoom('bedroom');
-                  resetToNormal();
-                }}
-                style={{
-                  background: 'rgba(239,68,68,0.15)',
-                  border: '1px solid rgba(239,68,68,0.35)',
-                  color: '#fca5a5',
-                  padding: '2px 8px',
-                  borderRadius: 9999,
-                  fontSize: '0.68rem',
-                  fontWeight: 800,
-                  cursor: 'pointer',
-                }}
-                title="Normale dön ve odaya geç"
-              >
-                ✕ Normale Dön
-              </button>
-            )}
-            <span style={{ fontSize: '0.7rem', color: '#64748b' }}>
-              Oda:{' '}
-              <strong style={{ color: '#38bdf8' }}>
-                {activeRoom === 'bathroom' ? 'Banyo Odası 🫧' : 'Yatak Odası 🛋️'}
-              </strong>
-            </span>
-          </div>
+          {(isUserAction || activeRoom === 'bathroom') && (
+            <button
+              onClick={() => {
+                setActiveRoom('bedroom');
+                resetToNormal();
+              }}
+              style={{
+                background: 'rgba(239,68,68,0.15)',
+                border: '1px solid rgba(239,68,68,0.35)',
+                color: '#fca5a5',
+                padding: '2px 8px',
+                borderRadius: 9999,
+                fontSize: '0.66rem',
+                fontWeight: 800,
+                cursor: 'pointer',
+                flexShrink: 0,
+              }}
+            >
+              ✕ Normale Dön
+            </button>
+          )}
         </div>
       </div>
 
