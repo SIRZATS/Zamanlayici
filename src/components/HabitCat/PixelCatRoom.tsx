@@ -467,18 +467,19 @@ export const PixelCatRoom: React.FC<PixelCatRoomProps> = ({
 
   return (
     <div
+      className="responsive-cat-room-card"
       style={{
         position: 'relative',
         width: '100%',
-        maxWidth: 580,
+        maxWidth: 520,
         margin: '0 auto',
-        borderRadius: 24,
+        borderRadius: 20,
         overflow: 'hidden',
         border: mood === 'blooming' ? '2px solid rgba(244,114,182,0.65)' : '2px solid #3f3f46',
         boxShadow: mood === 'blooming'
-          ? '0 0 45px rgba(244,114,182,0.25), 0 20px 50px rgba(0,0,0,0.85)'
-          : '0 20px 50px rgba(0,0,0,0.85)',
-        background: activeRoom === 'bathroom' ? '#1b2c38' : '#2b4554',
+          ? '0 0 35px rgba(244,114,182,0.25), 0 16px 40px rgba(0,0,0,0.85)'
+          : '0 16px 40px rgba(0,0,0,0.85)',
+        background: activeRoom === 'bathroom' ? '#1b2c38' : isNight ? '#3b4e5b' : '#adc9dc',
         userSelect: 'none',
         imageRendering: 'pixelated',
         transition: 'background 0.4s ease',
@@ -486,10 +487,12 @@ export const PixelCatRoom: React.FC<PixelCatRoomProps> = ({
     >
       {/* ── 1. ODA ALANI (YATAK ODASI VEYA BANYO ODASI) ── */}
       <div
+        className="responsive-cat-viewport"
         style={{
           position: 'relative',
           width: '100%',
           aspectRatio: '1 / 1',
+          maxHeight: 'min(40vh, 380px)',
           background: activeRoom === 'bathroom' ? '#1c2d38' : isNight ? '#425867' : '#adc9dc',
           overflow: 'hidden',
           display: 'flex',
@@ -497,14 +500,15 @@ export const PixelCatRoom: React.FC<PixelCatRoomProps> = ({
           justifyContent: 'center',
         }}
       >
-        {/* İzometrik Oda Sahnesi: Odanın tavanı, köşeleri ve zemini kenarlardan kesilmeden tam görünür */}
+        {/* İzometrik Oda Sahnesi: Ekran boyutuna göre otomatik ölçeklenir, köşeler kesilmez */}
         <div
+          className="responsive-cat-stage"
           style={{
             position: 'absolute',
             inset: 0,
             width: '100%',
             height: '100%',
-            transform: 'scale(0.88)',
+            transform: 'scale(0.85)',
             transformOrigin: 'center center',
             display: 'flex',
             alignItems: 'center',
@@ -1486,6 +1490,35 @@ export const PixelCatRoom: React.FC<PixelCatRoomProps> = ({
 
       {/* ── CSS STİLLERİ ── */}
       <style>{`
+        /* Ekran Boyutuna Göre Kendini Organize Eden Responsive Stiller */
+        .responsive-cat-room-card {
+          max-width: 520px;
+        }
+
+        .responsive-cat-viewport {
+          max-height: min(42vh, 380px);
+        }
+
+        @media (max-width: 640px) {
+          .responsive-cat-room-card {
+            border-radius: 16px !important;
+          }
+          .responsive-cat-viewport {
+            max-height: min(36vh, 290px) !important;
+          }
+          .responsive-cat-stage {
+            transform: scale(0.82) !important;
+          }
+          .cat-quick-anims-strip button {
+            padding: 4px 9px !important;
+            font-size: 0.68rem !important;
+          }
+          .room-action-bubble {
+            max-width: min(200px, 75vw) !important;
+            font-size: 0.7rem !important;
+            padding: 6px 12px !important;
+          }
+        }
         @keyframes playMouseSheet {
           0% { background-position: 0px 0px; }
           100% { background-position: -220px 0px; }
