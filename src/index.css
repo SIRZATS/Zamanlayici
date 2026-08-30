@@ -855,11 +855,22 @@ html, body, #root {
   }
 
   /* Kedi Odası & Kartlar: %100 esnek genişlik, taşma engelleme */
-  .responsive-cat-room-card {
+  .responsive-cat-room-card,
+  .cat-vitality-card {
     width: 100% !important;
     max-width: 100% !important;
     overflow: hidden !important;
     box-sizing: border-box !important;
+    border-radius: 16px !important;
+    padding: 16px 12px 14px !important;
+  }
+
+  .cat-vitality-hud {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    padding: 12px 10px !important;
     border-radius: 16px !important;
   }
 

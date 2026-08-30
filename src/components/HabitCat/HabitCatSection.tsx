@@ -1770,6 +1770,8 @@ export const HabitCatSection: React.FC<HabitCatSectionProps> = ({ currentUserNam
           gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))',
           gap: 20,
           marginBottom: 28,
+          width: '100%',
+          maxWidth: '100%',
         }}
       >
         {/* Kedi Görsel Modellemesi */}
@@ -1909,6 +1911,7 @@ export const HabitCatSection: React.FC<HabitCatSectionProps> = ({ currentUserNam
 
         {/* Sağ Panel: Kedi İhtiyaçları & Forest Durum Kartı (CatUI & BONUSPastelUI Stili) */}
         <div
+          className="cat-vitality-card"
           style={{
             position: 'relative',
             display: 'flex',
@@ -1920,6 +1923,10 @@ export const HabitCatSection: React.FC<HabitCatSectionProps> = ({ currentUserNam
             padding: '24px 22px 20px',
             border: '2px solid rgba(244, 114, 182, 0.3)',
             boxShadow: '0 8px 32px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.1)',
+            width: '100%',
+            maxWidth: '100%',
+            boxSizing: 'border-box',
+            overflow: 'hidden',
           }}
         >
           {/* Üst kenarda mışıl mışıl uyuyan sevimli kedi (CatUI ui_sleeping_cat_edge) */}
@@ -2003,6 +2010,7 @@ export const HabitCatSection: React.FC<HabitCatSectionProps> = ({ currentUserNam
 
             {/* ─── KEDİ CANLILIK DURUMU HUD (CAT THEME USER INTERFACE) ─── */}
             <div
+              className="cat-vitality-hud"
               style={{
                 display: 'flex',
                 flexDirection: 'column',
@@ -2013,10 +2021,15 @@ export const HabitCatSection: React.FC<HabitCatSectionProps> = ({ currentUserNam
                 padding: '16px 16px 14px',
                 boxShadow: '0 6px 0 #451a03, 0 12px 24px rgba(0,0,0,0.5)',
                 position: 'relative',
+                width: '100%',
+                maxWidth: '100%',
+                boxSizing: 'border-box',
+                minWidth: 0,
+                overflow: 'hidden',
               }}
             >
               {/* Üst Kısım: Avatar & 4 Canlılık Çubuğu */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, width: '100%', minWidth: 0 }}>
                 {/* Sol: Kedi Kulaklı Avatar Çerçevesi */}
                 <div
                   onClick={() => setShowEditName(true)}
@@ -2143,7 +2156,7 @@ export const HabitCatSection: React.FC<HabitCatSectionProps> = ({ currentUserNam
                 </div>
 
                 {/* Sağ: İlerleme Çubukları (4 Canlılık Çubuğu) */}
-                <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 6 }}>
+                <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: 6 }}>
                   {/* 1. Tokluk Barı (Kırmızı / HP) */}
                   <div>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.68rem', fontWeight: 800, marginBottom: 2 }}>
